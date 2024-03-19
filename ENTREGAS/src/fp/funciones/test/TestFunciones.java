@@ -6,8 +6,8 @@ import fp.funciones.Funciones;
 public class TestFunciones {
 	public static void main(String[] args) {
 		
-		//Test esPrimo
-		if(Funciones.esPrimo(4)) {
+		//Test esPrimo normal
+		if(Funciones.esPrimo(3)) {
 		    System.out.println("El numero es primo");
 		}
 		else {System.out.println("El numero no es primo");

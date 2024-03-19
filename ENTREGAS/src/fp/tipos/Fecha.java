@@ -81,10 +81,10 @@ public record Fecha(Integer año,
 	
 	
 	public Integer diferenciaEnDias(Fecha f) {
-		Integer diferenciaAños = Math.abs(this.año() - f.año());
-		Integer diferenciaMeses = Math.abs(this.mes() - f.mes());
-		Integer diferenciaDias = Math.abs(this.dia() - f.dia());
-		return diferenciaAños*365 + diferenciaMeses * (Fecha.diasEnMes(f.año(), f.mes())) + diferenciaDias; 
+		Integer diferenciaEnAños = Math.abs(this.año() - f.año());
+		Integer diferenciaEnMeses = Math.abs(this.mes() - f.mes());
+		Integer diferenciaEnDias = Math.abs(this.dia() - f.dia());
+		return diferenciaEnAños*365 + diferenciaEnMeses * (Fecha.diasEnMes(f.año(), f.mes())) + diferenciaEnDias; 
     }
 	
 	

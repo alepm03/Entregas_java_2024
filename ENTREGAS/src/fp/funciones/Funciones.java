@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Funciones {
 	public static boolean esPrimo(Integer n) {
 		Preconditions.checkArgument(n>=1, "El numero es nulo");
-		
 		boolean res = true;
 		for(Integer i= 2;i <= Math.sqrt(n);i++) {
 			if(n%i == 0) {
@@ -33,23 +32,23 @@ public class Funciones {
 		}
 		
 		public static Double numeroCombinatorio(Integer n, Integer k) {
-			Preconditions.checkArgument(n>=k, String.format("El valor n (%d) debe ser mayor que k (%d)", n,k));
-			Double denominador = Funciones.factorial(n);
-			Double divisor = Funciones.factorial(k)*(Funciones.factorial(n-k));
-			return denominador/divisor;
+			Preconditions.checkArgument(n>=k, String.format("El valor n (%d) ha de ser mayor que k (%d)", n,k));
+			Double x = Funciones.factorial(n);
+			Double y = Funciones.factorial(k)*(Funciones.factorial(n-k));
+			return x/y;
 		}
 		
 		public static Double calculoNumeroS(Integer n, Integer k) {
-			Preconditions.checkArgument(n>=k,String.format("El valor n (%d) debe ser mayor que k (%d)",n,k));
-			Double fueraSumatorio = 1/(Funciones.factorial(k));
+			Preconditions.checkArgument(n>=k,String.format("El valor n (%d) ha de ser mayor que k (%d)",n,k));
+			Double primOP = 1/(Funciones.factorial(k));
 			Double sumatorio =0. ;
 			for(Integer i=0;i<=k;i++) {
-				Double primero = Math.pow(-1, i);
-				Double segundo = Funciones.numeroCombinatorio(k, i);
-				Double tercero = Math.pow((k-i), n);
-				sumatorio += primero * segundo * tercero;
+				Double x = Math.pow(-1, i);
+				Double y = Funciones.numeroCombinatorio(k, i);
+				Double z = Math.pow((k-i), n);
+				sumatorio += x * y * z;
 				}
-			return fueraSumatorio*sumatorio;
+			return primOP*sumatorio;
 		}
 		
 		public static List<Integer> diferencias(List<Integer> numeros){
