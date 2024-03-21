@@ -3,6 +3,9 @@ package fp.funciones;
 import us.lsi.tools.Preconditions
 ;  
 import java.util.List;
+
+import fp.tipos.Fecha;
+
 import java.util.ArrayList;
 
 
@@ -35,7 +38,8 @@ public class Funciones {
 			Preconditions.checkArgument(n>=k, String.format("El valor n (%d) ha de ser mayor que k (%d)", n,k));
 			Double x = Funciones.factorial(n);
 			Double y = Funciones.factorial(k)*(Funciones.factorial(n-k));
-			return x/y;
+			Double res = x/y;
+			return res;
 		}
 		
 		public static Double calculoNumeroS(Integer n, Integer k) {
@@ -82,5 +86,3 @@ public class Funciones {
 		}
 
 	}	
-
-
