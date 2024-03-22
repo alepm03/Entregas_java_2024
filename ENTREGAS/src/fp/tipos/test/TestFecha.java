@@ -6,6 +6,7 @@ public class TestFecha {
 	public static void main(String[] args) {
 		Fecha fecha= Fecha.of(2023, 11, 25);
 		Fecha fecha1= Fecha.of(2023, 11, 30);
+		
 		//Test metodo of
 		System.out.println("---TEST metodo of---");
 		System.out.println(fecha);
@@ -33,6 +34,10 @@ public class TestFecha {
 		testDiasEnMes(2023,11);
 		testDiasEnMes(2023,2);
 		testDiasEnMes(2024,2);
+		//Test RestarDiasFechas
+		System.out.println("---TEST RestarDiasFecha---");
+		int numDias=5;
+		testRestarDiasFechas(fecha,numDias);
 	}
 	public static void testNombreMes(Fecha fecha) {
 		String nombreMes= fecha.nombreMes();
@@ -65,6 +70,17 @@ public class TestFecha {
      public static void testDiasEnMes(int año,int mes) {
      System.out.println("El mes indicado tiene "+ Fecha.diasEnMes(año, mes)+ " dias");
     }
+     //AQUI EMPIEZA LA DEFENSA
+     public static void testRestarDiasFechas(Fecha fecha, int numDias) {
+         
+         try {
+             Fecha nuevaFecha = Fecha.restarDiasFechas(fecha, numDias);
+             System.out.println("Fecha original: " + fecha);
+             System.out.println("Nueva fecha después de restar " + numDias + " días: " + nuevaFecha);
+         } catch (IllegalArgumentException e) {
+             System.out.println("Error: " + e.getMessage());
+         }
+     }
 }
 
 

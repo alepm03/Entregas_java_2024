@@ -19,11 +19,23 @@ public class TestFunciones {
 		testNumeroS(3,4);
 		testNumeroS(6,4);
 		//Test diferencias
+		List<Integer> numeros= new ArrayList<>(List.of(4,5,7,10,14,19));
 		System.out.println("---TEST diferencias---");
-		testDiferencias();
+		testDiferencias(numeros);
 		//Test cadenaMasLarga
+		List<String> caracteres= new ArrayList<>(List.of("Ordenador","Raton","Teclado","Pantallas"));
 		System.out.println("---TEST cadenaMasLarga---");
-		testCadenaMasLarga();
+		testCadenaMasLarga(caracteres);
+		System.out.println("-----Aqui empieza la defensa---");
+		//Test P2
+		testP2(5,2,1);
+		testP2(2,2,5);
+		//Test C2
+		testC2(6,4);
+		testC2(3,4);
+		//Test C2
+		testS2(6,4);
+		testS2(3,4);
 	}
 	
 	public static void testEsPrimo(int res) {
@@ -55,25 +67,40 @@ public class TestFunciones {
 			System.out.println("Error: "+ e.getMessage());
 		}
 	}
-	public static void testDiferencias(){
-		List<Integer> numeros= new ArrayList<>();
-		numeros.add(4);
-		numeros.add(5);
-		numeros.add(7);
-		numeros.add(10);
-		numeros.add(14);
-		numeros.add(19);
+	public static void testDiferencias(List<Integer> numeros){
 		System.out.println("las diferencias son: "+ Funciones.diferencias(numeros));
 	}
-	public static void testCadenaMasLarga() {
-		List<String> caracteres= new ArrayList<>();
-		caracteres.add("Ordenador");
-		caracteres.add("Raton");
-		caracteres.add("Teclado");
-		caracteres.add("Pantallas");
+	public static void testCadenaMasLarga(List<String> caracteres) {
 		System.out.println("La cadena o cadenas mas largas son: "+ Funciones.cadenaMasLarga(caracteres));
 		
 	}	
+	//AQUI EMPIEZA LA DEFENSA
+	
+	public static void testP2 ( int n, int k, int i) {
+		try {
+			Double resultado= Funciones.P2(n,k,i);
+			System.out.println("El resultado es:"+ resultado);
+			}catch(IllegalArgumentException e) {
+				System.out.println("Error: "+ e.getMessage());
+			}
+	}
+	public static void testC2(int n,int k ){
+		try {
+			Double numcom= Funciones.C2(n, k);
+			System.out.println("El resultado es: "+ numcom);
+		}catch(IllegalArgumentException e){
+			System.out.println("Error: "+ e.getMessage());
+		}
+	}
+	public static void testS2(int n, int k) {
+		try {
+		Double numS= Funciones.S2(n, k);
+		System.out.println("El resultado es:"+ numS);
+		}catch(IllegalArgumentException e) {
+			System.out.println("Error: "+ e.getMessage());
+		}
+	}
+	
 		
 }
 

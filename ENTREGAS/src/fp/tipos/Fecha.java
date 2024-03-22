@@ -144,5 +144,17 @@ public record Fecha(Integer año,
 		String nombreMes = this.nombreMes();
 		return nombreDias + ", " + this.dia() + " de " + nombreMes + " de " + this.año();
 	}
+	
+	//Aqui empieza la defensa
+	
+	
+	public static Fecha restarDiasFechas(Fecha fecha, int numDias) {
+        
+        if (numDias <= 0 || numDias >= 1000) {
+            throw new IllegalArgumentException("El número de días debe ser positivo y tener como máximo 3 dígitos.");
+        }
+        
+        return fecha.restarDias(numDias);
+    }
 
 }

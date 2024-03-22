@@ -84,5 +84,38 @@ public class Funciones {
 		        }
 		        return masLargas;
 		}
+		//AQUI EMPEZA LA DEFENSA
+		
+		public static Double P2(int n, int k, int i) {
+	        Preconditions.checkArgument(i < k + 1, String.format("El valor de i (%d) debe ser menor que k (%d) + 1", i, k));
+	        double producto = 1.0;
 
-	}	
+	        for (int j = i; j <= n - k + i - 2; j++) {
+	            producto *= ((double) (n - j)) / ((double) (j - i + 2));
+	        }
+
+	        return producto;}
+		
+		public static Double C2(Integer n, Integer k) {
+			Preconditions.checkArgument(n>=k, String.format("El valor n (%d) ha de ser mayor que k (%d)", n,k));
+			Double x = Funciones.factorial(n);
+			Double y = Funciones.factorial(k+1)*(Funciones.factorial(n-(k+1)));
+			Double res = x/y;
+			return res;
+		}
+		public static Double S2(Integer n, Integer k) {
+			Preconditions.checkArgument(n>=k,String.format("El valor n (%d) ha de ser mayor que k (%d)",n,k));
+			Double primOP = (Funciones.factorial(k))/(Funciones.factorial(k+2));
+			Double sumatorio =0. ;
+			for(Integer i=0;i<=k;i++) {
+				Double x = Math.pow(-1, i);
+				Double y = Funciones.numeroCombinatorio(k, i);
+				Double z = Math.pow((k-i), n);
+				sumatorio += x * y * z;
+				}
+			return primOP*sumatorio;
+		}
+		
+		}
+
+	
