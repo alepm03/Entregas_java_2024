@@ -12,11 +12,11 @@ public class TestFunciones {
 		testEsPrimo(4);
 		//Test numeroCombinatorio
 		System.out.println("---TEST numeroCombinatorio---");
-		testNumeroCombinatorio(3,4);
+		testNumeroCombinatorio(5,2);
 		testNumeroCombinatorio(6,4);
 		//Test numeroS
 		System.out.println("---TEST numeroS---");
-		testNumeroS(3,4);
+		testNumeroS(5,2);
 		testNumeroS(6,4);
 		//Test diferencias
 		List<Integer> numeros= new ArrayList<>(List.of(4,5,7,10,14,19));
@@ -28,13 +28,13 @@ public class TestFunciones {
 		testCadenaMasLarga(caracteres);
 		System.out.println("-----Aqui empieza la defensa---");
 		//Test P2
-		testP2(5,2,1);
+		testP2(5,3,1);
 		testP2(2,2,5);
 		//Test C2
-		testC2(6,4);
+		testC2(5,2);
 		testC2(3,4);
 		//Test C2
-		testS2(6,4);
+		testS2(2,1);
 		testS2(3,4);
 	}
 	
