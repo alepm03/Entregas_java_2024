@@ -53,6 +53,10 @@ public class TestDataFrame {
 				System.out.println(d.filter(lista -> {
 				    String apellido = lista.get(2);
 				    return apellido.compareToIgnoreCase("R") >= 0;}));
+				
+				
+		       
+				
 			
 	}
 

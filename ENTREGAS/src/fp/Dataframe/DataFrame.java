@@ -8,6 +8,9 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import fp.Dataframe.*;
+import fp.Dataframe.*;
+
 public interface DataFrame {
 	//
 	// Métodos estáticos o funcionalidades del tipo
@@ -53,6 +56,9 @@ public interface DataFrame {
 	public static <R> R parse(String text, Class<R> type) {
 		return DataFrameImpl.parse(text, type);
 	}
+
+	
+	
 	//
 	// Métodos imperativos o propiedades del tipo
 	List<String> columNames();
@@ -85,6 +91,14 @@ public interface DataFrame {
 	DataFrame addColum(String newColum, List<String> datos);
 	DataFrame addCalculatedColum(String newColum,Function<List<String>,String> f);
 	DataFrame removeColum(String colum);
-	String toString();	      
-
+	String toString();
+	
+	DataFrameImpl addDataFrame(DataFrame df);
+	DataFrame removeColumByIndex(int index);
+	DataFrameImpl addDataFrame2(DataFrame df1, DataFrame df2);
+	List<DataFrame> divideDataFrame(DataFrame df, int ci);
 }
+	
+	
+
+
