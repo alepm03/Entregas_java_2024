@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.List;
+
 import us.lsi.ejemplos_b1_tipos.Persona;
 
 public class Questions {
@@ -44,7 +44,6 @@ public class Questions {
 	}
 	
 	
-	
 	//	Interés mínimo, máximo y medio de los préstamos
 	public static record Info(Double min, Double max, Double mean) {
 		public String toString() {
@@ -68,44 +67,52 @@ public class Questions {
 	}
 	public static Map<Info2,Integer> numPrestamosPorMesAño(Banco banco) {
 		return banco.prestamos().todos().stream()
-                .collect(Collectors.groupingBy(p -> new Info2(p.fechaComienzo().getMonthValue(), p.fechaComienzo().getYear()), Collectors.summingInt(p->1)));
+                .collect(Collectors.groupingBy(p -> new Info2(p.fechaComienzo().getMonthValue(), p.fechaComienzo().getYear()), Collectors.summingInt(p -> 1)));
 	}
 	
-	
-	
-	
+	public static Persona personaMasAntiguaEnEmpresa(Banco banco) {
+	    return banco.empleados().todos().stream()
+	            .map(Empleado::persona)
+	            .min((p1, p2) -> {
+	                LocalDate fechaContrato1 = banco.empleados().empleadoDni(p1.dni()).get().fechaDeContrato();
+	                LocalDate fechaContrato2 = banco.empleados().empleadoDni(p2.dni()).get().fechaDeContrato();
+	                return fechaContrato1.compareTo(fechaContrato2);
+	            })
+	            .orElse(null);
+	}
 	
 	public static void main(String[] args) {
-        // Crear una instancia de Banco y agregar datos de prueba
-		Banco banco = Banco.of();
+	    // Crear una instancia de Banco y agregar datos de prueba
+	    Banco banco = Banco.of();
+	    
 
-        // 1. Vencimiento de los préstamos de un cliente
-        String clienteDni = "64482505G"; // Cambiar por un DNI real de prueba
-        Set<LocalDate> vencimientos = Questions.vencimientoDePrestamosDeCliente(banco, clienteDni);
-        System.out.println("Vencimiento de los préstamos del cliente " + clienteDni + ": " + vencimientos);
+	    // 1. Vencimiento de los préstamos de un cliente
+	    String clienteDni = "64482505G"; // Cambiar por un DNI real de prueba
+	    Set<LocalDate> vencimientos = Questions.vencimientoDePrestamosDeCliente(banco, clienteDni);
+	    System.out.println("Vencimiento de los préstamos del cliente " + clienteDni + ": " + vencimientos);
 
-        // 2. Persona con más préstamos
-        Persona personaConMasPrestamos = Questions.clienteConMasPrestamos(banco);
-        System.out.println("Cliente con más préstamos: " + (personaConMasPrestamos != null ? personaConMasPrestamos : "No hay datos"));
+	    // 2. Persona con más préstamos
+	    Persona personaConMasPrestamos = Questions.clienteConMasPrestamos(banco);
+	    System.out.println("Cliente con más préstamos: " + (personaConMasPrestamos != null ? personaConMasPrestamos : "No hay datos"));
 
-        // 3. Cantidad total de los créditos gestionados por un empleado
-        String empleadoDni = "52184462S"; // Cambiar por un DNI real de prueba
-        Double cantidadPrestamosEmpleado = Questions.cantidadPrestamosPmpledado(banco, empleadoDni);
-        System.out.println("Cantidad total de los préstamos gestionados por el empleado " + empleadoDni + ": " + cantidadPrestamosEmpleado);
+	    // 3. Cantidad total de los créditos gestionados por un empleado
+	    String empleadoDni = "52184462S"; // Cambiar por un DNI real de prueba
+	    Double cantidadPrestamosEmpleado = Questions.cantidadPrestamosPmpledado(banco, empleadoDni);
+	    System.out.println("Cantidad total de los préstamos gestionados por el empleado " + empleadoDni + ": " + cantidadPrestamosEmpleado);
 
-        // 4. Empleado más longevo
-        Persona empleadoMasLongevo = Questions.empleadoMasLongevo(banco);
-        System.out.println("Empleado más longevo: " + (empleadoMasLongevo != null ? empleadoMasLongevo : "No hay datos"));
+	    // 4. Persona más antigua en la empresa
+	    Persona personaMasAntigua = Questions.personaMasAntiguaEnEmpresa(banco);
+	    System.out.println("Persona más antigua en la empresa: " + (personaMasAntigua != null ? personaMasAntigua : "No hay datos"));
 
-        // 5. Interés mínimo, máximo y medio de los préstamos
-        Questions.Info interesInfo = Questions.rangoDeIntereseDePrestamos(banco);
-        System.out.println("Interés mínimo, máximo y medio de los préstamos: " + interesInfo);
+	    // 5. Interés mínimo, máximo y medio de los préstamos
+	    Questions.Info interesInfo = Questions.rangoDeIntereseDePrestamos(banco);
+	    System.out.println("Interés mínimo, máximo y medio de los préstamos: " + interesInfo);
 
-        // 6. Número de préstamos por mes y año
-        Map<Questions.Info2, Integer> prestamosPorMesAño = Questions.numPrestamosPorMesAño(banco);
-        System.out.println("Número de préstamos por mes y año: " + prestamosPorMesAño);
-        
-}
+	    // 6. Número de préstamos por mes y año
+	    Map<Questions.Info2, Integer> prestamosPorMesAño = Questions.numPrestamosPorMesAño(banco);
+	    System.out.println("Número de préstamos por mes y año: " + prestamosPorMesAño);
 	}
+
+}
 
 
